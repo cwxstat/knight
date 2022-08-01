@@ -5,14 +5,14 @@ import (
 	"sync"
 )
 
-type moves struct {
+type Moves struct {
 	x, y, count int
 }
 
 type board struct {
 	board   [][]int
 	count   int
-	history []moves
+	history []Moves
 	sync.Mutex
 }
 
@@ -23,7 +23,7 @@ func NewBoard() *board {
 func (b *board) Init(x, y int) {
 	b.Lock()
 	defer b.Unlock()
-	b.history = []moves{}
+	b.history = []Moves{}
 	b.board = make([][]int, x)
 	for i := 0; i < x; i++ {
 		b.board[i] = make([]int, y)
@@ -38,8 +38,18 @@ func (b *board) Move(x, y int) bool {
 	}
 	b.count++
 	b.board[x][y] = b.count
-	b.history = append(b.history, moves{x, y, b.count})
+	b.history = append(b.history, Moves{x, y, b.count})
 	return true
+}
+
+func (b *board) History() []Moves {
+	b.Lock()
+	defer b.Unlock()
+	history := []Moves{}
+	for _, m := range b.history {
+		history = append(history, Moves{m.x, m.y, m.count})
+	}
+	return history
 }
 
 func (b *board) valid(x, y int) bool {
@@ -73,4 +83,5 @@ func (b *board) Print() {
 		}
 		fmt.Println()
 	}
+	fmt.Println()
 }

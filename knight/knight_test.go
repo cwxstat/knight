@@ -45,3 +45,20 @@ func Test_Print(t *testing.T) {
 	b.Undo()
 	b.Print()
 }
+
+func Test_History(t *testing.T) {
+	b := NewBoard()
+	b.Init(8, 8)
+	b.Move(0, 0)
+	b.Move(0, 1)
+	b.Move(0, 2)
+	h := b.History()
+	if len(h) != 3 {
+		t.Errorf("Expected 3 moves, got %d", len(h))
+	}
+	b.Undo()
+	h = b.History()
+	if len(h) != 2 {
+		t.Errorf("Expected 2 moves, got %d", len(h))
+	}
+}
