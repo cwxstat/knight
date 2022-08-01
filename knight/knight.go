@@ -28,10 +28,24 @@ func (b *board) Init(x, y int) {
 	}
 }
 
-func (b *board) Move(x, y int) {
+func (b *board) Move(x, y int) bool {
 	b.Lock()
 	defer b.Unlock()
+	if !b.valid(x, y) {
+		return false
+	}
 	b.board[x][y].count++
+	return true
+}
+
+func (b *board) valid(x, y int) bool {
+	if x < 0 || x >= len(b.board) || y < 0 || y >= len(b.board[0]) {
+		return false
+	}
+	if b.board[x][y].count != 0 {
+		return false
+	}
+	return true
 }
 
 func (b *board) Clear(x, y int) {
