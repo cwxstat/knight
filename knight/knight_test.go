@@ -17,19 +17,27 @@ func Test_Move(t *testing.T) {
 	b := NewBoard()
 	b.Init(5, 5)
 	ok := b.Move(1, 2)
-	if b.board[1][2].count != 1 || !ok {
-		t.Errorf("Expected 1, got %d", b.board[1][2].count)
+	if b.board[1][2] != 1 || !ok {
+		t.Errorf("Expected 1, got %d", b.board[1][2])
 	}
 	if ok := b.Move(1, 2); ok {
 		t.Errorf("Expected false, got true")
 	}
 
 	b.Clear(1, 2)
-	if b.board[1][2].count != 0 {
-		t.Errorf("Expected 0, got %d", b.board[1][2].count)
+	if b.board[1][2] != 0 {
+		t.Errorf("Expected 0, got %d", b.board[1][2])
 	}
 
 	if ok := b.Move(1, 2); !ok {
 		t.Errorf("Expected true, got false")
 	}
+}
+
+func Test_Print(t *testing.T) {
+	b := NewBoard()
+	b.Init(8, 8)
+	b.Move(0, 0)
+	b.Move(0, 1)
+	b.Print()
 }
