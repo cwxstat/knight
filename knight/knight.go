@@ -5,9 +5,9 @@ import (
 )
 
 type moves struct {
-	x    int
-	y    int
-	hits int
+	x     int
+	y     int
+	count int
 }
 
 type board struct {
@@ -26,4 +26,16 @@ func (b *board) Init(x, y int) {
 	for i := 0; i < x; i++ {
 		b.board[i] = make([]moves, y)
 	}
+}
+
+func (b *board) Move(x, y int) {
+	b.Lock()
+	defer b.Unlock()
+	b.board[x][y].count++
+}
+
+func (b *board) Clear(x, y int) {
+	b.Lock()
+	defer b.Unlock()
+	b.board[x][y].count = 0
 }
