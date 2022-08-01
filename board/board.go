@@ -1,4 +1,4 @@
-package knight
+package board
 
 import (
 	"fmt"
