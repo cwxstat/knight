@@ -52,10 +52,16 @@ func (b *board) valid(x, y int) bool {
 	return true
 }
 
-func (b *board) Clear(x, y int) {
+func (b *board) Undo() bool {
 	b.Lock()
 	defer b.Unlock()
-	b.board[x][y] = 0
+	if len(b.history) == 0 {
+		return false
+	}
+	m := b.history[len(b.history)-1]
+	b.board[m.x][m.y] = 0
+	b.history = b.history[:len(b.history)-1]
+	return true
 }
 
 func (b *board) Print() {

@@ -24,7 +24,8 @@ func Test_Move(t *testing.T) {
 		t.Errorf("Expected false, got true")
 	}
 
-	b.Clear(1, 2)
+	b.Undo()
+	b.Undo()
 	if b.board[1][2] != 0 {
 		t.Errorf("Expected 0, got %d", b.board[1][2])
 	}
@@ -39,5 +40,8 @@ func Test_Print(t *testing.T) {
 	b.Init(8, 8)
 	b.Move(0, 0)
 	b.Move(0, 1)
+	b.Move(0, 2)
+	b.Print()
+	b.Undo()
 	b.Print()
 }
