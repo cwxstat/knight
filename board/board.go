@@ -10,18 +10,18 @@ type Moves struct {
 	x, y, count int
 }
 
-type board struct {
+type Board struct {
 	board   [][]int
 	count   int
 	history []Moves
 	sync.Mutex
 }
 
-func NewBoard() *board {
-	return &board{}
+func NewBoard() *Board {
+	return &Board{}
 }
 
-func (b *board) Init(x, y int) {
+func (b *Board) Init(x, y int) {
 	b.Lock()
 	defer b.Unlock()
 	b.history = []Moves{}
@@ -31,13 +31,13 @@ func (b *board) Init(x, y int) {
 	}
 }
 
-func (b *board) Move(x, y int) bool {
+func (b *Board) Move(x, y int) bool {
 	b.Lock()
 	defer b.Unlock()
 	return b.move(x, y)
 }
 
-func (b *board) move(x, y int) bool {
+func (b *Board) move(x, y int) bool {
 	if !b.valid(x, y) {
 		return false
 	}
@@ -47,7 +47,7 @@ func (b *board) move(x, y int) bool {
 	return true
 }
 
-func (b *board) Valid(x, y int) bool {
+func (b *Board) Valid(x, y int) bool {
 	b.Lock()
 	defer b.Unlock()
 	if !b.valid(x, y) {
@@ -57,7 +57,7 @@ func (b *board) Valid(x, y int) bool {
 	return true
 }
 
-func (b *board) ValidJump(x, y int) bool {
+func (b *Board) ValidJump(x, y int) bool {
 	b.Lock()
 	defer b.Unlock()
 	if moves, err := b.last(); err == nil {
@@ -67,7 +67,7 @@ func (b *board) ValidJump(x, y int) bool {
 	return b.valid(x, y)
 }
 
-func (b *board) History() []Moves {
+func (b *Board) History() []Moves {
 	b.Lock()
 	defer b.Unlock()
 	history := []Moves{}
@@ -77,7 +77,7 @@ func (b *board) History() []Moves {
 	return history
 }
 
-func (b *board) Last() (Moves, error) {
+func (b *Board) Last() (Moves, error) {
 	b.Lock()
 	defer b.Unlock()
 	if len(b.history) == 0 {
@@ -86,14 +86,14 @@ func (b *board) Last() (Moves, error) {
 	return b.history[len(b.history)-1], nil
 }
 
-func (b *board) last() (Moves, error) {
+func (b *Board) last() (Moves, error) {
 	if len(b.history) == 0 {
 		return Moves{}, errors.New("No moves")
 	}
 	return b.history[len(b.history)-1], nil
 }
 
-func (b *board) valid(x, y int) bool {
+func (b *Board) valid(x, y int) bool {
 	if x < 0 || x >= len(b.board) || y < 0 || y >= len(b.board[0]) {
 		return false
 	}
@@ -103,7 +103,7 @@ func (b *board) valid(x, y int) bool {
 	return true
 }
 
-func (b *board) Undo() bool {
+func (b *Board) Undo() bool {
 	b.Lock()
 	defer b.Unlock()
 	if len(b.history) == 0 {
@@ -115,7 +115,7 @@ func (b *board) Undo() bool {
 	return true
 }
 
-func (b *board) Print() {
+func (b *Board) Print() {
 	b.Lock()
 	defer b.Unlock()
 	for i := 0; i < len(b.board); i++ {

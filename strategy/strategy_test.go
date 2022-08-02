@@ -1,13 +1,19 @@
 package strategy
 
 import (
+	"testing"
+
 	"github.com/cwxstat/knight/board"
 	"github.com/cwxstat/knight/knight"
-	"testing"
 )
 
 func Test_Idea(t *testing.T) {
 	b := board.NewBoard()
+	b.Init(8, 8)
+	b.Move(0, 0)
+	r := Options(b)
+	t.Log(r)
+
 	k := knight.NewKnight()
 	b.Init(8, 8)
 	b.Move(0, 0)

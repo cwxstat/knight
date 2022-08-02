@@ -8,7 +8,7 @@ module dev
 go 1.18
 
 require (
-	github.com/cwxstat/knight v0.0.3
+	github.com/cwxstat/knight v0.0.4
 )
 -- main.go --
 package main
@@ -40,7 +40,7 @@ func main() {
 
 
 
-git tag -a v0.0.2 -m "Alpha release"
+git tag -a v0.0.4 -m "Alpha release"
 
 
 ```
