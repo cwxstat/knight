@@ -76,3 +76,7 @@ func (k *Knight) Index(i int) (Move, error) {
 	return k.move[i], nil
 
 }
+
+func (k *Knight) Len() int {
+	return len(k.history)
+}
