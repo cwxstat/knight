@@ -27,3 +27,25 @@ func TestKnight_Next(t *testing.T) {
 	}
 
 }
+
+func TestKnight_Back(t *testing.T) {
+	k := NewKnight()
+
+	k.Move(2)
+	k.Move(1)
+	k.Move(1)
+	move, history := k.Status()
+	t.Log(move, history)
+	k.Back()
+	move, history = k.Status()
+	if len(move) != 2 {
+		t.Errorf("Expected %v, got %v", 2, len(move))
+	}
+	k.Back()
+	k.Back()
+	k.Back()
+	move, history = k.Status()
+	if len(move) != 0 {
+		t.Errorf("Expected %v, got %v", 0, len(move))
+	}
+}
