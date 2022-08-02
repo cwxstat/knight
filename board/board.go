@@ -34,6 +34,10 @@ func (b *board) Init(x, y int) {
 func (b *board) Move(x, y int) bool {
 	b.Lock()
 	defer b.Unlock()
+	return b.move(x, y)
+}
+
+func (b *board) move(x, y int) bool {
 	if !b.valid(x, y) {
 		return false
 	}
