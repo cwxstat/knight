@@ -49,3 +49,10 @@ func TestKnight_Back(t *testing.T) {
 		t.Errorf("Expected %v, got %v", 0, len(move))
 	}
 }
+
+func TestKnight_X(t *testing.T) {
+	k := NewKnight()
+
+	m, _ := k.Move(2)
+	t.Log(m.X)
+}

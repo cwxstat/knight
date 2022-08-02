@@ -12,7 +12,8 @@ import (
 
 func main() {
 	k := knight.NewKnight()
-	k.Move(0)
+	m2,_ :=k.Move(0)
+    fmt.Println(m2.X)
 	k.Move(1)
 	m, h := k.Status()
 	fmt.Println(h)
