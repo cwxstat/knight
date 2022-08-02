@@ -5,7 +5,7 @@ import (
 )
 
 type Move struct {
-	x, y, index int
+	X, Y, Index int
 }
 
 type Knight struct {

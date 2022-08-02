@@ -26,7 +26,7 @@ func main() {
 
 
 
+git tag -a v0.0.2 -m "Alpha release"
 
-git tag -a v0.0.1 -m "Alpha release"
 
 ```
