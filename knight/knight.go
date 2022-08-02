@@ -68,3 +68,11 @@ func (k *Knight) Status() ([]Move, []int) {
 	}
 	return move, history
 }
+
+func (k *Knight) Index(i int) (Move, error) {
+	if i < 0 || i >= len(k.move) {
+		return Move{0, 0, 0}, errors.New("Out of bounds")
+	}
+	return k.move[i], nil
+
+}
