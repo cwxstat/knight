@@ -1,6 +1,7 @@
 package board
 
 import (
+	"errors"
 	"fmt"
 	"sync"
 )
@@ -42,6 +43,26 @@ func (b *board) Move(x, y int) bool {
 	return true
 }
 
+func (b *board) Valid(x, y int) bool {
+	b.Lock()
+	defer b.Unlock()
+	if !b.valid(x, y) {
+		return false
+	}
+
+	return true
+}
+
+func (b *board) ValidJump(x, y int) bool {
+	b.Lock()
+	defer b.Unlock()
+	if moves, err := b.last(); err == nil {
+		return b.valid(x+moves.x, y+moves.y)
+	}
+
+	return b.valid(x, y)
+}
+
 func (b *board) History() []Moves {
 	b.Lock()
 	defer b.Unlock()
@@ -50,6 +71,22 @@ func (b *board) History() []Moves {
 		history = append(history, Moves{m.x, m.y, m.count})
 	}
 	return history
+}
+
+func (b *board) Last() (Moves, error) {
+	b.Lock()
+	defer b.Unlock()
+	if len(b.history) == 0 {
+		return Moves{}, errors.New("No moves")
+	}
+	return b.history[len(b.history)-1], nil
+}
+
+func (b *board) last() (Moves, error) {
+	if len(b.history) == 0 {
+		return Moves{}, errors.New("No moves")
+	}
+	return b.history[len(b.history)-1], nil
 }
 
 func (b *board) valid(x, y int) bool {

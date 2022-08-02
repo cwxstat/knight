@@ -39,6 +39,14 @@ func (k *Knight) Move(index int) (Move, error) {
 
 }
 
+func (k *Knight) MoveOptions(index int) (Move, error) {
+	if index < 0 || index >= len(k.move) {
+		return Move{0, 0, 0}, errors.New("Out of bounds")
+	}
+	return k.move[index], nil
+
+}
+
 func (k *Knight) Next() (Move, error) {
 	if len(k.history) == 0 {
 		return k.Move(0)

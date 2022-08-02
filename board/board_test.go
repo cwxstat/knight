@@ -35,6 +35,20 @@ func Test_Move(t *testing.T) {
 	}
 }
 
+func Test_ValidJump(t *testing.T) {
+	b := NewBoard()
+	b.Init(8, 8)
+	b.Move(0, 0)
+	for i := -10; i < 10; i++ {
+		if b.ValidJump(0, i) {
+			t.Log("valid jump", i)
+		} else {
+			t.Log("invalid jump", i)
+		}
+	}
+
+}
+
 func Test_Print(t *testing.T) {
 	b := NewBoard()
 	b.Init(8, 8)
@@ -44,6 +58,7 @@ func Test_Print(t *testing.T) {
 	b.Print()
 	b.Undo()
 	b.Print()
+	t.Log(b.Last())
 }
 
 func Test_History(t *testing.T) {

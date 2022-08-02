@@ -10,9 +10,14 @@ func Test_Idea(t *testing.T) {
 	b := board.NewBoard()
 	k := knight.NewKnight()
 	b.Init(8, 8)
+	b.Move(0, 0)
+	l, _ := b.Last()
+	t.Log(l)
 	m, h := k.Move(0)
 	t.Log(m, h)
 	t.Log(k.Len())
 	k.Move(1)
 	t.Log(k.Status())
+
+	t.Log(k.MoveOptions(1))
 }
