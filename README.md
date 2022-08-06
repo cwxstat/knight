@@ -8,7 +8,7 @@ module dev
 go 1.18
 
 require (
-	github.com/cwxstat/knight v0.0.4
+	github.com/cwxstat/knight v0.0.6
 )
 -- main.go --
 package main
