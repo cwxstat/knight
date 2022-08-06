@@ -37,7 +37,8 @@ func main() {
 
 
 ```bash
-
+https://go.dev/blog/examples
+go install -v golang.org/x/tools/cmd/godoc@latest
 
 
 git tag -a v0.0.5 -m "Documentation test"
