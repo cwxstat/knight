@@ -37,7 +37,10 @@ func main() {
 
 
 ```bash
+Ref: https://github.com/gonum/gonum
+
 https://go.dev/blog/examples
+
 go install -v golang.org/x/tools/cmd/godoc@latest
 
 
