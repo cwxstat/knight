@@ -37,6 +37,8 @@ func main() {
 
 
 ```bash
+https://pkg.go.dev/github.com/cwxstat/knight@v0.0.6/knight#example-NewKnight
+
 Ref: https://github.com/gonum/gonum
 
 https://go.dev/blog/examples
