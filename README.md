@@ -40,7 +40,7 @@ func main() {
 
 
 
-git tag -a v0.0.4 -m "Alpha release"
+git tag -a v0.0.5 -m "Documentation test"
 
 
 ```
