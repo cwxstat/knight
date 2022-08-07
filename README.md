@@ -6,7 +6,7 @@
 -- go.mod --
 module dev
 
-go 1.18
+go 1.19
 
 require (
 	github.com/cwxstat/knight v0.0.6
