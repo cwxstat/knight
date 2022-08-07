@@ -1,3 +1,4 @@
+[![Go](https://github.com/cwxstat/knight/actions/workflows/go.yml/badge.svg)](https://github.com/cwxstat/knight/actions/workflows/go.yml)
 # knight
 
 [Playground](https://go.dev/play/p/_N5NER84Ff8)
