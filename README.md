@@ -1,7 +1,7 @@
 [![Go](https://github.com/cwxstat/knight/actions/workflows/go.yml/badge.svg)](https://github.com/cwxstat/knight/actions/workflows/go.yml)
 # knight
 
-[Playground](https://go.dev/play/p/_N5NER84Ff8)
+[Playground](https://go.dev/play/p/f2WMqyLfw8W)
 ```go
 -- go.mod --
 module dev
